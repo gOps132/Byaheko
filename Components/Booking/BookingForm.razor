@@ -6,14 +6,14 @@
 <div class="rounded-xl bg-[#16130d] p-6 text-[#faf7f1]">
     @if (phase == Phase.Success && confirmed is not null)
     {
-        <div class="bk-pop text-center">
+        <div class="bk-pop text-center" role="status">
             <svg class="mx-auto h-16 w-16" viewBox="0 0 52 52" aria-hidden="true">
                 <circle cx="26" cy="26" r="24" fill="none" stroke="#c9a227" stroke-width="2" />
                 <path class="bk-check-path" fill="none" stroke="#c9a227" stroke-width="4"
                       stroke-linecap="round" stroke-linejoin="round" d="M14 27l8 8 16-17" />
             </svg>
-            <p class="bk-sparkle mx-auto mt-2 inline-block text-2xl text-[#c9a227]">✦</p>
-            <p class="font-display mt-2 text-2xl">You're going to @Package.Title!</p>
+            <p class="bk-sparkle mx-auto mt-2 inline-block text-2xl text-[#c9a227]" aria-hidden="true">✦</p>
+            <h2 @ref="successHeading" tabindex="-1" class="font-display mt-2 text-2xl outline-none">You're going to @Package.Title!</h2>
             <p class="mt-2 text-sm text-[#faf7f1]/70">
                 Reference <span class="font-semibold text-[#c9a227]">@confirmed.Reference</span> ·
                 @confirmed.Guests @(confirmed.Guests == 1 ? "traveler" : "travelers") ·
@@ -102,6 +102,8 @@
     private Booking draft = new();
     private Booking? confirmed;
     private Phase phase = Phase.Form;
+    private ElementReference successHeading;
+    private bool needsSuccessFocus;
 
     private decimal Total => Package.PricePerPerson * draft.Guests;
 
@@ -118,6 +120,16 @@
         Trips.Add(draft);
         confirmed = draft;
         phase = Phase.Success;
+        needsSuccessFocus = true;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (needsSuccessFocus)
+        {
+            needsSuccessFocus = false;
+            try { await successHeading.FocusAsync(); } catch { }
+        }
     }
 
     private void Reset()

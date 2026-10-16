@@ -6,7 +6,7 @@
             <span class="block text-[11px] uppercase tracking-[0.3em] text-[#8a8272]">Travel &amp; Tours</span>
         </a>
 
-        <button @onclick="ToggleMenu" aria-label="Toggle navigation"
+        <button @onclick="ToggleMenu" aria-label="Toggle navigation" aria-expanded="@menuOpen" aria-controls="mobile-nav"
                 class="rounded border border-[#c9a227]/40 px-3 py-1 text-xl leading-none md:hidden">
             @(menuOpen ? "×" : "☰")
         </button>
@@ -37,7 +37,7 @@
 
     @if (menuOpen)
     {
-        <nav class="flex flex-col gap-1 border-t border-[#c9a227]/25 px-4 py-3 text-sm uppercase tracking-[0.2em] md:hidden">
+        <nav id="mobile-nav" class="flex flex-col gap-1 border-t border-[#c9a227]/25 px-4 py-3 text-sm uppercase tracking-[0.2em] md:hidden">
             <NavLink href="" Match="NavLinkMatch.All" ActiveClass="!text-[#c9a227]"
                      class="py-2 text-[#faf7f1]/80" @onclick="CloseMenu">Home</NavLink>
             <NavLink href="packages" ActiveClass="!text-[#c9a227]"
