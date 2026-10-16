@@ -1,0 +1,73 @@
+@page "/my-trips"
+@rendermode InteractiveServer
+@using Midterm.Models
+@using Midterm.Services
+@inject BookingState Trips
+@implements IDisposable
+
+<PageTitle>My Trips | BiyaheKo Travel &amp; Tours</PageTitle>
+
+<section class="mx-auto max-w-6xl px-4 py-10">
+    <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">My trips</p>
+    <h1 class="font-display mt-2 text-4xl md:text-5xl">Reserved journeys</h1>
+
+    @if (!Trips.Bookings.Any())
+    {
+        <div class="mt-8">
+            <EmptyState Title="No trips yet"
+                        Message="Your reserved journeys will wait for you here. Go find one worth bragging about.">
+                <a href="packages"
+                   class="inline-block bg-[#16130d] px-6 py-3 text-sm uppercase tracking-[0.2em] text-[#faf7f1] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                    Browse packages
+                </a>
+            </EmptyState>
+        </div>
+    }
+    else
+    {
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#16130d] px-5 py-4 text-[#faf7f1]">
+            <p class="text-sm text-[#faf7f1]/70">
+                @Trips.Bookings.Count @(Trips.Bookings.Count == 1 ? "reservation" : "reservations") ·
+                @Trips.Bookings.Sum(b => b.Guests) travelers
+            </p>
+            <p class="text-sm">Total committed: <span class="font-display text-xl text-[#c9a227]">₱@TotalSpent.ToString("N0")</span></p>
+        </div>
+
+        <div class="bk-stagger mt-6 grid gap-6 md:grid-cols-2">
+            @foreach (var booking in Trips.Bookings.OrderByDescending(b => b.CreatedAt))
+            {
+                var package = TourData.GetBySlug(booking.PackageSlug);
+                <article class="overflow-hidden rounded-xl border border-[#16130d]/10 bg-white shadow-sm">
+                    <div class="flex items-start justify-between gap-3 p-5">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.25em] text-[#8a8272]">@booking.Reference</p>
+                            <h2 class="font-display mt-1 text-xl">@(package?.Title ?? booking.PackageSlug)</h2>
+                            <p class="mt-1 text-sm text-[#8a8272]">
+                                @booking.TravelDate.ToString("MMM d, yyyy") · @booking.Guests @(booking.Guests == 1 ? "guest" : "guests") · @booking.FullName
+                            </p>
+                        </div>
+                        <span class="shrink-0 bg-[#c9a227]/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6d1a]">
+                            Confirmed
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-[#16130d]/10 px-5 py-3">
+                        <span class="font-display text-lg">₱@((package?.PricePerPerson ?? 0) * booking.Guests).ToString("N0")</span>
+                        <button @onclick="() => Trips.Cancel(booking.Id)"
+                                class="text-xs uppercase tracking-[0.2em] text-[#b34434] hover:underline">
+                            Cancel
+                        </button>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+</section>
+
+@code {
+    private decimal TotalSpent =>
+        Trips.TotalSpent(slug => TourData.GetBySlug(slug)?.PricePerPerson ?? 0);
+
+    protected override void OnInitialized() => Trips.Changed += StateHasChanged;
+
+    public void Dispose() => Trips.Changed -= StateHasChanged;
+}

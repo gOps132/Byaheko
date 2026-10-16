@@ -1,4 +1,5 @@
 @page "/packages/{slug}"
+@rendermode InteractiveServer
 @using Midterm.Models
 @using Midterm.Services
 
@@ -100,19 +101,13 @@ else
             </div>
         </div>
 
-        @* ---------- sticky booking rail (ticket 05 mounts the form here) ---------- *@
+        @* ---------- sticky booking rail ---------- *@
         <aside class="mt-10 lg:sticky lg:top-24 lg:mt-0">
-            <div class="rounded-xl bg-[#16130d] p-6 text-[#faf7f1]">
-                <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">@package.DurationLabel</p>
-                <p class="mt-1"><span class="font-display text-3xl">₱@package.PricePerPerson.ToString("N0")</span> <span class="text-sm text-[#faf7f1]/60">/ person</span></p>
-                <div class="mt-4 rounded-lg border border-dashed border-[#c9a227]/50 p-4 text-center text-sm text-[#faf7f1]/70">
-                    Online booking opens in the next slice. For now, call us at +63 (2) 8555 0134.
-                </div>
-                <a href="my-trips"
-                   class="mt-4 block text-center text-xs uppercase tracking-[0.25em] text-[#c9a227] hover:text-[#e3c766]">
-                    View my trips →
-                </a>
-            </div>
+            <BookingForm Package="package" />
+            <a href="my-trips"
+               class="mt-4 block text-center text-xs uppercase tracking-[0.25em] text-[#8a8272] hover:text-[#c9a227]">
+                View my trips →
+            </a>
         </aside>
     </section>
 }
