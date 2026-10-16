@@ -8,7 +8,7 @@
 <PageTitle>My Trips | BiyaheKo Travel &amp; Tours</PageTitle>
 
 <section class="mx-auto max-w-6xl px-4 py-10">
-    <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">My trips</p>
+    <p class="text-xs uppercase tracking-[0.3em] text-gold">My trips</p>
     <h1 class="font-display mt-2 text-4xl md:text-5xl">Reserved journeys</h1>
 
     @if (!Trips.Bookings.Any())
@@ -17,7 +17,7 @@
             <EmptyState Title="No trips yet"
                         Message="Your reserved journeys will wait for you here. Go find one worth bragging about.">
                 <a href="packages"
-                   class="inline-block bg-[#16130d] px-6 py-3 text-sm uppercase tracking-[0.2em] text-[#faf7f1] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                   class="inline-block bg-ink px-6 py-3 text-sm uppercase tracking-[0.2em] text-ivory transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
                     Browse packages
                 </a>
             </EmptyState>
@@ -25,12 +25,12 @@
     }
     else
     {
-        <div class="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#16130d] px-5 py-4 text-[#faf7f1]">
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-ink px-5 py-4 text-ivory">
             <p class="text-sm text-[#faf7f1]/70">
                 @Trips.Bookings.Count @(Trips.Bookings.Count == 1 ? "reservation" : "reservations") ·
                 @Trips.Bookings.Sum(b => b.Guests) travelers
             </p>
-            <p class="text-sm">Total committed: <span class="font-display text-xl text-[#c9a227]">₱@TotalSpent.ToString("N0")</span></p>
+            <p class="text-sm">Total committed: <span class="font-display text-xl text-gold">₱@TotalSpent.ToString("N0")</span></p>
         </div>
 
         <div class="bk-stagger mt-6 grid gap-6 md:grid-cols-2">
@@ -53,7 +53,7 @@
                     <div class="flex items-center justify-between border-t border-[#16130d]/10 px-5 py-3">
                         <span class="font-display text-lg">₱@(((package?.PricePerPerson ?? 0) * booking.Guests).ToString("N0"))</span>
                         <button @onclick="() => Trips.Cancel(booking.Id)"
-                                class="text-xs uppercase tracking-[0.2em] text-[#b34434] hover:underline">
+                                class="-m-2 px-2 py-2.5 text-xs uppercase tracking-[0.2em] text-[#b34434] hover:underline">
                             Cancel
                         </button>
                     </div>

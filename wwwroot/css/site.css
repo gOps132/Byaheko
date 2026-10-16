@@ -154,9 +154,15 @@ body {
   border-radius: 2px;
 }
 
+/* Single source of truth: palette lives in :root above + tailwind.config
+   colors (ink/ivory/gold) in Components/App.razor. Prefer bg-ink / text-ivory /
+   text-gold etc. over arbitrary hex; arbitrary values with opacity modifiers
+   (e.g. bg-[#16130d]/70) and non-theme tones are intentionally left as-is. */
+
 /* dark-surface variant: softer gold + halo so focus reads on near-black */
 header :focus-visible,
 footer :focus-visible,
+.bg-ink :focus-visible,
 .bg-\[\#16130d\] :focus-visible {
   outline-color: var(--gold-soft);
   box-shadow: 0 0 0 5px rgba(227, 199, 102, 0.35);

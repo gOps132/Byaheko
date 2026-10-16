@@ -7,8 +7,8 @@
 <PageTitle>BiyaheKo Travel &amp; Tours — Discover the Philippines in Style</PageTitle>
 
 @* ---------- 1. HERO ---------- *@
-<section class="relative flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden bg-[#16130d] text-[#faf7f1]">
-    <div class="absolute inset-0 bg-gradient-to-br from-[#16130d] via-[#3a2f18] to-[#6b5518]">
+<section class="relative flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden bg-ink text-ivory">
+    <div class="absolute inset-0 bg-gradient-to-br from-ink via-[#3a2f18] to-[#6b5518]">
         @for (var i = 0; i < slides.Length; i++)
         {
             var index = i;
@@ -25,7 +25,7 @@
     <div class="relative mx-auto w-full max-w-6xl -translate-y-4 px-4 py-24">
         <h1 class="font-display mt-4 max-w-3xl text-5xl leading-[1.05] md:text-7xl">
             <span class="bk-hero-line block">The islands,</span>
-            <span class="bk-hero-line block">done <em class="not-italic text-[#c9a227]">properly.</em></span>
+            <span class="bk-hero-line block">done <em class="not-italic text-gold">properly.</em></span>
         </h1>
         <p class="bk-hero-line mt-5 max-w-xl text-lg text-[#faf7f1]/80">
             BiyaheKo builds four local journeys with licensed guides, honest prices,
@@ -33,16 +33,16 @@
         </p>
         <div class="bk-hero-line mt-8 flex flex-wrap gap-4">
             <a href="packages"
-               class="bg-[#c9a227] px-7 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#16130d] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+               class="bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-ink transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
                 Browse packages
             </a>
             <a href="about"
-               class="border border-[#faf7f1]/40 px-7 py-3 text-sm uppercase tracking-[0.2em] text-[#faf7f1] transition-colors hover:border-[#c9a227] hover:text-[#c9a227]">
+               class="border border-[#faf7f1]/40 px-7 py-3 text-sm uppercase tracking-[0.2em] text-ivory transition-colors hover:border-gold hover:text-gold">
                 Why BiyaheKo
             </a>
         </div>
     </div>
-    <p class="bk-hero-line absolute inset-x-0 bottom-8 text-center text-xs uppercase tracking-[0.35em] text-[#c9a227]">
+    <p class="bk-hero-line absolute inset-x-0 bottom-8 text-center text-xs uppercase tracking-[0.35em] text-gold">
         Scroll to begin
     </p>
     <div class="absolute bottom-8 right-6 flex gap-2">
@@ -50,14 +50,14 @@
         {
             var index = i;
             <button @onclick="() => slide = index" aria-label="Show slide @(index + 1)"
-                    class="h-2.5 w-2.5 rounded-full transition-colors @(index == slide ? "bg-[#c9a227]" : "bg-[#faf7f1]/50 hover:bg-[#faf7f1]")"></button>
+                    class="h-2.5 w-2.5 rounded-full transition-colors @(index == slide ? "bg-gold" : "bg-[#faf7f1]/50 hover:bg-ivory")"></button>
         }
     </div>
 </section>
 
 @* ---------- 2. MARQUEE STRIP ---------- *@
-<div class="overflow-hidden border-y border-[#c9a227]/30 bg-[#c9a227] py-3" aria-hidden="true">
-    <div class="bk-marquee-track gap-0 text-sm font-semibold uppercase tracking-[0.3em] text-[#16130d]">
+<div class="overflow-hidden border-y border-[#c9a227]/30 bg-gold py-3" aria-hidden="true">
+    <div class="bk-marquee-track gap-0 text-sm font-semibold uppercase tracking-[0.3em] text-ink">
         @for (var i = 0; i < 2; i++)
         {
             <span class="flex shrink-0 items-center">
@@ -74,10 +74,10 @@
 <section class="mx-auto max-w-6xl px-4 py-16">
     <div class="reveal flex flex-wrap items-end justify-between gap-4">
         <div>
-            <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">Featured journeys</p>
+            <p class="text-xs uppercase tracking-[0.3em] text-gold">Featured journeys</p>
             <h2 class="font-display mt-2 text-3xl md:text-4xl">Three ways to disappear for a while</h2>
         </div>
-        <a href="packages" class="border-b-2 border-[#c9a227] pb-1 text-sm uppercase tracking-[0.2em] hover:text-[#c9a227]">
+        <a href="packages" class="border-b-2 border-gold pb-1 text-sm uppercase tracking-[0.2em] hover:text-gold">
             All four packages →
         </a>
     </div>
@@ -92,23 +92,23 @@
 </section>
 
 @* ---------- 4. WHY BAND ---------- *@
-<section class="bg-[#16130d] text-[#faf7f1]">
+<section class="bg-ink text-ivory">
     <div class="mx-auto max-w-6xl px-4 py-16">
-        <p class="reveal text-xs uppercase tracking-[0.3em] text-[#c9a227]">Why BiyaheKo</p>
+        <p class="reveal text-xs uppercase tracking-[0.3em] text-gold">Why BiyaheKo</p>
         <h2 class="reveal font-display mt-2 max-w-2xl text-3xl md:text-4xl">A small agency with unreasonable standards</h2>
         <div class="mt-10 divide-y divide-[#faf7f1]/10 border-y border-[#faf7f1]/10">
             <div class="reveal grid gap-2 py-6 md:grid-cols-[80px_1fr_2fr] md:items-baseline">
-                <span class="font-display text-3xl text-[#c9a227]">01</span>
+                <span class="font-display text-3xl text-gold">01</span>
                 <p class="font-medium uppercase tracking-[0.15em]">Licensed local guides</p>
                 <p class="text-[#faf7f1]/70">Every tour is led by someone who grew up on that island, not a script reader.</p>
             </div>
             <div class="reveal grid gap-2 py-6 md:grid-cols-[80px_1fr_2fr] md:items-baseline">
-                <span class="font-display text-3xl text-[#c9a227]">02</span>
+                <span class="font-display text-3xl text-gold">02</span>
                 <p class="font-medium uppercase tracking-[0.15em]">Honest per-person pricing</p>
                 <p class="text-[#faf7f1]/70">The price you see is the price: transfers, fees, and breakfasts already inside.</p>
             </div>
             <div class="reveal grid gap-2 py-6 md:grid-cols-[80px_1fr_2fr] md:items-baseline">
-                <span class="font-display text-3xl text-[#c9a227]">03</span>
+                <span class="font-display text-3xl text-gold">03</span>
                 <p class="font-medium uppercase tracking-[0.15em]">Small groups, always</p>
                 <p class="text-[#faf7f1]/70">Never more than twelve travelers. The lagoon is quiet; your boat should be too.</p>
             </div>

@@ -3,9 +3,9 @@
 
 <PageTitle>About | BiyaheKo Travel &amp; Tours</PageTitle>
 
-<section class="bg-[#16130d] text-[#faf7f1]">
+<section class="bg-ink text-ivory">
     <div class="mx-auto max-w-6xl px-4 pb-14 pt-12">
-        <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">About BiyaheKo</p>
+        <p class="text-xs uppercase tracking-[0.3em] text-gold">About BiyaheKo</p>
         <h1 class="font-display mt-2 max-w-3xl text-4xl leading-tight md:text-5xl">
             A small agency with unreasonable standards.
         </h1>
@@ -22,9 +22,9 @@
     <div>
         <h2 class="font-display text-2xl">How to reach us</h2>
         <ul class="mt-4 space-y-3 text-sm">
-            <li class="flex gap-3"><span class="text-[#c9a227]">✦</span><span><strong>Email</strong> — hello@biyaheko.ph (replies within a day)</span></li>
-            <li class="flex gap-3"><span class="text-[#c9a227]">✦</span><span><strong>Phone</strong> — +63 (2) 8555 0134, Mon–Sat 9am–6pm</span></li>
-            <li class="flex gap-3"><span class="text-[#c9a227]">✦</span><span><strong>Office</strong> — Makati City, Metro Manila (visits by appointment)</span></li>
+            <li class="flex gap-3"><span class="text-gold">✦</span><span><strong>Email</strong> — hello@biyaheko.ph (replies within a day)</span></li>
+            <li class="flex gap-3"><span class="text-gold">✦</span><span><strong>Phone</strong> — +63 (2) 8555 0134, Mon–Sat 9am–6pm</span></li>
+            <li class="flex gap-3"><span class="text-gold">✦</span><span><strong>Office</strong> — Makati City, Metro Manila (visits by appointment)</span></li>
         </ul>
         <h2 class="font-display mt-10 text-2xl">The fine print, up front</h2>
         <ul class="mt-4 space-y-3 text-sm text-[#6b6455]">
@@ -39,11 +39,11 @@
             @if (sent)
             {
                 <div class="bk-pop py-8 text-center">
-                    <p class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#c9a227]/15 text-2xl text-[#c9a227]">✓</p>
+                    <p class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#c9a227]/15 text-2xl text-gold">✓</p>
                     <p class="font-display mt-4 text-2xl">Message received!</p>
                     <p class="mt-2 text-sm text-[#6b6455]">Thanks, @sentName. We reply within one working day.</p>
                     <button @onclick="Reset"
-                            class="mt-5 text-xs uppercase tracking-[0.25em] text-[#6b6455] hover:text-[#c9a227]">
+                            class="mt-5 text-xs uppercase tracking-[0.25em] text-[#6b6455] hover:text-gold">
                         Send another
                     </button>
                 </div>
@@ -56,23 +56,23 @@
                     <div>
                         <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#6b6455]" for="inq-name">Name</label>
                         <InputText id="inq-name" @bind-Value="inquiry.Name" placeholder="Your name"
-                                   class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
+                                   class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-gold" />
                         <ValidationMessage For="() => inquiry.Name" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />
                     </div>
                     <div>
                         <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#6b6455]" for="inq-email">Email</label>
                         <InputText id="inq-email" @bind-Value="inquiry.Email" placeholder="you@example.com"
-                                   class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
+                                   class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-gold" />
                         <ValidationMessage For="() => inquiry.Email" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />
                     </div>
                     <div>
                         <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#6b6455]" for="inq-msg">Message</label>
                         <InputTextArea id="inq-msg" @bind-Value="inquiry.Message" rows="4" placeholder="Honeymoon in October, 2 travelers, mid-range budget…"
-                                       class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
+                                       class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-gold" />
                         <ValidationMessage For="() => inquiry.Message" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />
                     </div>
                     <button type="submit"
-                            class="w-full bg-[#16130d] px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#faf7f1] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                            class="w-full bg-ink px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-ivory transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
                         Send inquiry
                     </button>
                 </EditForm>

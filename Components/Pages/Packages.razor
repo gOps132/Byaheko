@@ -6,17 +6,17 @@
 <PageTitle>Packages | BiyaheKo Travel &amp; Tours</PageTitle>
 
 <section class="mx-auto max-w-6xl px-4 py-10">
-    <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">Tour packages</p>
+    <p class="text-xs uppercase tracking-[0.3em] text-gold">Tour packages</p>
     <h1 class="font-display mt-2 text-4xl md:text-5xl">Choose your escape</h1>
     <p class="mt-2 max-w-xl text-[#6b6455]">Four local journeys, hand-built. Search by island, sort by what matters.</p>
 
     <div class="mt-6 flex flex-col gap-3 md:flex-row">
         <label for="pkg-search" class="sr-only">Search tour packages</label>
         <input id="pkg-search" @bind="searchText" @bind:event="oninput" placeholder="Search El Nido, beach, culture…"
-               class="flex-1 rounded-lg border border-[#16130d]/15 bg-white px-4 py-2.5 text-sm outline-none transition-colors placeholder:text-[#6b6455]/70 focus:border-[#c9a227]" />
+               class="flex-1 rounded-lg border border-[#16130d]/15 bg-white px-4 py-2.5 text-sm outline-none transition-colors placeholder:text-[#6b6455]/70 focus:border-gold" />
         <label for="pkg-sort" class="sr-only">Sort tour packages</label>
         <select id="pkg-sort" @bind="sortBy"
-                class="rounded-lg border border-[#16130d]/15 bg-white px-4 py-2.5 text-sm outline-none focus:border-[#c9a227]">
+                class="rounded-lg border border-[#16130d]/15 bg-white px-4 py-2.5 text-sm outline-none focus:border-gold">
             <option value="recommended">Sort: Recommended</option>
             <option value="price-asc">Price: low to high</option>
             <option value="price-desc">Price: high to low</option>
@@ -33,7 +33,7 @@
             <EmptyState Title="No journeys found"
                         Message="Try a different island or clear your search.">
                 <button @onclick="ClearSearch"
-                        class="bg-[#16130d] px-5 py-2 text-sm uppercase tracking-[0.2em] text-[#faf7f1] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                        class="bg-ink px-5 py-2 text-sm uppercase tracking-[0.2em] text-ivory transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
                     Clear search
                 </button>
             </EmptyState>
