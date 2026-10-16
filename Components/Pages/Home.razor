@@ -1,7 +1,115 @@
 ﻿@page "/"
+@using Midterm.Models
+@using Midterm.Services
 
-<PageTitle>Home</PageTitle>
+<PageTitle>BiyaheKo Travel &amp; Tours — Discover the Philippines in Style</PageTitle>
 
-<h1>Hello, world!</h1>
+@* ---------- 1. HERO ---------- *@
+<section class="relative overflow-hidden bg-[#16130d] text-[#faf7f1]">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#16130d] via-[#3a2f18] to-[#6b5518]">
+        <img src="https://images.unsplash.com/photo-1559494007-9f5847c49d94?auto=format&fit=crop&w=2000&q=80"
+             alt="Kayaks drifting through the Big Lagoon at first light, El Nido"
+             class="bk-kenburns h-full w-full object-cover" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#16130d]/90 via-[#16130d]/55 to-transparent"></div>
 
-Welcome to your new app.
+    <div class="relative mx-auto max-w-6xl px-4 pb-24 pt-20 md:pb-32 md:pt-28">
+        <p class="bk-hero-line text-xs uppercase tracking-[0.35em] text-[#c9a227]">El Nido · Boracay · Cebu · Bohol</p>
+        <h1 class="font-display mt-4 max-w-3xl text-5xl leading-[1.05] md:text-7xl">
+            <span class="bk-hero-line block">The islands,</span>
+            <span class="bk-hero-line block">done <em class="not-italic text-[#c9a227]">properly.</em></span>
+        </h1>
+        <p class="bk-hero-line mt-5 max-w-xl text-lg text-[#faf7f1]/80">
+            BiyaheKo builds four local journeys with licensed guides, honest prices,
+            and no 4 a.m. stranger-filled vans.
+        </p>
+        <div class="bk-hero-line mt-8 flex flex-wrap gap-4">
+            <a href="packages"
+               class="bg-[#c9a227] px-7 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#16130d] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                Browse packages
+            </a>
+            <a href="about"
+               class="border border-[#faf7f1]/40 px-7 py-3 text-sm uppercase tracking-[0.2em] text-[#faf7f1] transition-colors hover:border-[#c9a227] hover:text-[#c9a227]">
+                Why BiyaheKo
+            </a>
+        </div>
+    </div>
+</section>
+
+@* ---------- 2. MARQUEE STRIP ---------- *@
+<div class="overflow-hidden border-y border-[#c9a227]/30 bg-[#c9a227] py-3" aria-hidden="true">
+    <div class="bk-marquee-track gap-0 text-sm font-semibold uppercase tracking-[0.3em] text-[#16130d]">
+        @for (var i = 0; i < 2; i++)
+        {
+            <span class="flex shrink-0 items-center">
+                <span class="px-6">El Nido</span><span>✦</span>
+                <span class="px-6">Boracay</span><span>✦</span>
+                <span class="px-6">Cebu</span><span>✦</span>
+                <span class="px-6">Bohol</span><span>✦</span>
+            </span>
+        }
+    </div>
+</div>
+
+@* ---------- 3. FEATURED PACKAGES ---------- *@
+<section class="mx-auto max-w-6xl px-4 py-16">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+        <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">Featured journeys</p>
+            <h2 class="font-display mt-2 text-3xl md:text-4xl">Three ways to disappear for a while</h2>
+        </div>
+        <a href="packages" class="border-b-2 border-[#c9a227] pb-1 text-sm uppercase tracking-[0.2em] hover:text-[#c9a227]">
+            All four packages →
+        </a>
+    </div>
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+        @foreach (var package in featured)
+        {
+            <div class="reveal">
+                <PackageCard Package="package" />
+            </div>
+        }
+    </div>
+</section>
+
+@* ---------- 4. WHY BAND ---------- *@
+<section class="bg-[#16130d] text-[#faf7f1]">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+        <p class="reveal text-xs uppercase tracking-[0.3em] text-[#c9a227]">Why BiyaheKo</p>
+        <h2 class="reveal font-display mt-2 max-w-2xl text-3xl md:text-4xl">A small agency with unreasonable standards</h2>
+        <div class="mt-10 divide-y divide-[#faf7f1]/10 border-y border-[#faf7f1]/10">
+            <div class="reveal grid gap-2 py-6 md:grid-cols-[80px_1fr_2fr] md:items-baseline">
+                <span class="font-display text-3xl text-[#c9a227]">01</span>
+                <p class="font-medium uppercase tracking-[0.15em]">Licensed local guides</p>
+                <p class="text-[#faf7f1]/70">Every tour is led by someone who grew up on that island, not a script reader.</p>
+            </div>
+            <div class="reveal grid gap-2 py-6 md:grid-cols-[80px_1fr_2fr] md:items-baseline">
+                <span class="font-display text-3xl text-[#c9a227]">02</span>
+                <p class="font-medium uppercase tracking-[0.15em]">Honest per-person pricing</p>
+                <p class="text-[#faf7f1]/70">The price you see is the price: transfers, fees, and breakfasts already inside.</p>
+            </div>
+            <div class="reveal grid gap-2 py-6 md:grid-cols-[80px_1fr_2fr] md:items-baseline">
+                <span class="font-display text-3xl text-[#c9a227]">03</span>
+                <p class="font-medium uppercase tracking-[0.15em]">Small groups, always</p>
+                <p class="text-[#faf7f1]/70">Never more than twelve travelers. The lagoon is quiet; your boat should be too.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ---------- 5. TESTIMONIAL ---------- *@
+<section class="mx-auto max-w-4xl px-4 py-16 text-center">
+    <p class="reveal font-display text-2xl leading-relaxed md:text-3xl">
+        “We watched the sun come up over the Big Lagoon with coffee our guide brewed
+        on the boat. I have stopped bragging about other trips.”
+    </p>
+    <p class="reveal mt-6 text-sm uppercase tracking-[0.25em] text-[#8a8272]">Mara D. — El Nido Island Escape, March 2026</p>
+    <div class="reveal mt-8">
+        <RatingStars Rating="5.0" />
+    </div>
+</section>
+
+@code {
+    private readonly List<TourPackage> featured =
+        TourData.GetPackages().OrderByDescending(p => p.Rating).Take(3).ToList();
+}

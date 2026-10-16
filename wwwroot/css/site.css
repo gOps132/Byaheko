@@ -134,6 +134,18 @@ body {
   transition: border-color 0.3s ease-out;
 }
 
+/* ---------- destination marquee ---------- */
+@keyframes bk-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.bk-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: bk-marquee 26s linear infinite;
+}
+
 /* ---------- reduced motion kill-switch ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
