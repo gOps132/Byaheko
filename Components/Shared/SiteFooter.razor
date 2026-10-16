@@ -1,7 +1,7 @@
 @inject NavigationManager Nav
 @implements IDisposable
 <footer class="bg-[#16130d] text-[#faf7f1]">
-    @if (!IsPackagesPage)
+    @if (!HideCta)
     {
         <div class="border-y border-[#c9a227]/30 bg-[#c9a227]">
             <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-8 text-[#16130d] md:flex-row md:items-center">
@@ -45,7 +45,13 @@
 </footer>
 
 @code {
-    private bool IsPackagesPage => Nav.ToBaseRelativePath(Nav.Uri).TrimEnd('/').StartsWith("packages", StringComparison.OrdinalIgnoreCase);
+    private bool HideCta => IsPackagesPage || IsMyTripsPage;
+
+    private bool IsPackagesPage => CurrentPath.StartsWith("packages", StringComparison.OrdinalIgnoreCase);
+
+    private bool IsMyTripsPage => CurrentPath.StartsWith("my-trips", StringComparison.OrdinalIgnoreCase);
+
+    private string CurrentPath => Nav.ToBaseRelativePath(Nav.Uri).TrimEnd('/');
 
     protected override void OnInitialized() => Nav.LocationChanged += OnLocationChanged;
 
