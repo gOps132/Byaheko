@@ -27,7 +27,7 @@
             <li class="flex gap-3"><span class="text-[#c9a227]">✦</span><span><strong>Office</strong> — Makati City, Metro Manila (visits by appointment)</span></li>
         </ul>
         <h2 class="font-display mt-10 text-2xl">The fine print, up front</h2>
-        <ul class="mt-4 space-y-3 text-sm text-[#8a8272]">
+        <ul class="mt-4 space-y-3 text-sm text-[#6b6455]">
             <li>✓ Full refund up to 7 days before travel, 50% up to 72 hours.</li>
             <li>✓ Trips proceed rain or shine; unsafe weather means free rebooking.</li>
             <li>✓ Groups capped at 12 travelers, always.</li>
@@ -41,9 +41,9 @@
                 <div class="bk-pop py-8 text-center">
                     <p class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#c9a227]/15 text-2xl text-[#c9a227]">✓</p>
                     <p class="font-display mt-4 text-2xl">Message received!</p>
-                    <p class="mt-2 text-sm text-[#8a8272]">Thanks, @sentName. We reply within one working day.</p>
+                    <p class="mt-2 text-sm text-[#6b6455]">Thanks, @sentName. We reply within one working day.</p>
                     <button @onclick="Reset"
-                            class="mt-5 text-xs uppercase tracking-[0.25em] text-[#8a8272] hover:text-[#c9a227]">
+                            class="mt-5 text-xs uppercase tracking-[0.25em] text-[#6b6455] hover:text-[#c9a227]">
                         Send another
                     </button>
                 </div>
@@ -54,19 +54,19 @@
                 <EditForm Model="inquiry" OnValidSubmit="Send" class="mt-4 space-y-3">
                     <DataAnnotationsValidator />
                     <div>
-                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#8a8272]" for="inq-name">Name</label>
+                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#6b6455]" for="inq-name">Name</label>
                         <InputText id="inq-name" @bind-Value="inquiry.Name" placeholder="Your name"
                                    class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
                         <ValidationMessage For="() => inquiry.Name" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />
                     </div>
                     <div>
-                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#8a8272]" for="inq-email">Email</label>
+                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#6b6455]" for="inq-email">Email</label>
                         <InputText id="inq-email" @bind-Value="inquiry.Email" placeholder="you@example.com"
                                    class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
                         <ValidationMessage For="() => inquiry.Email" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />
                     </div>
                     <div>
-                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#8a8272]" for="inq-msg">Message</label>
+                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#6b6455]" for="inq-msg">Message</label>
                         <InputTextArea id="inq-msg" @bind-Value="inquiry.Message" rows="4" placeholder="Honeymoon in October, 2 travelers, mid-range budget…"
                                        class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
                         <ValidationMessage For="() => inquiry.Message" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />

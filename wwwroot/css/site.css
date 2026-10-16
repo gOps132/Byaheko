@@ -6,7 +6,8 @@
   --ivory: #faf7f1;
   --gold: #c9a227;
   --gold-soft: #e3c766;
-  --muted: #8a8272;
+  --muted: #6b6455;
+  --muted-light: #8a8272; /* decorative / on-dark only — fails 4.5:1 on light */
   --danger: #b34434;
 }
 
@@ -144,6 +145,21 @@ body {
   display: flex;
   width: max-content;
   animation: bk-marquee 26s linear infinite;
+}
+
+/* ---------- accessibility: visible focus ---------- */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* dark-surface variant: softer gold + halo so focus reads on near-black */
+header :focus-visible,
+footer :focus-visible,
+.bg-\[\#16130d\] :focus-visible {
+  outline-color: var(--gold-soft);
+  box-shadow: 0 0 0 5px rgba(227, 199, 102, 0.35);
 }
 
 /* ---------- reduced motion kill-switch ---------- */

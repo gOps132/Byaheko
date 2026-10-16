@@ -3,16 +3,19 @@
    class="group flex h-full flex-col overflow-hidden rounded-xl border border-[#16130d]/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
     <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-[#16130d] via-[#3a2f18] to-[#c9a227]">
         <img src="@Package.ImageUrl" alt="@Package.Title, @Package.Destination"
+             width="800" height="600"
+             decoding="async"
+             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
              loading="lazy"
              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
     </div>
     <div class="flex flex-1 flex-col p-5">
-        <p class="text-xs uppercase tracking-[0.25em] text-[#8a8272]">@Package.Destination</p>
+        <p class="text-xs uppercase tracking-[0.25em] text-[#6b6455]">@Package.Destination</p>
         <h3 class="font-display mt-1 text-xl leading-snug">@Package.Title</h3>
-        <p class="mt-1 truncate text-sm italic text-[#8a8272]">@Package.DreamLine</p>
-        <p class="mb-4 mt-2 text-xs uppercase tracking-[0.2em] text-[#8a8272]">@Package.DurationDays days · @Package.DurationNights nights · @Package.Category</p>
+        <p class="mt-1 truncate text-sm italic text-[#6b6455]">@Package.DreamLine</p>
+        <p class="mb-4 mt-2 text-xs uppercase tracking-[0.2em] text-[#6b6455]">@Package.DurationDays days · @Package.DurationNights nights · @Package.Category</p>
         <div class="mt-auto flex items-center justify-between border-t border-[#16130d]/10 pt-3">
-            <span class="text-sm text-[#8a8272]">
+            <span class="text-sm text-[#6b6455]">
                 <span class="text-lg font-semibold text-[#16130d]">₱@Package.PricePerPerson.ToString("N0")</span>
                 / person
             </span>
