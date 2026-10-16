@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "travel-hospitality": {
+      "source": "dylantarre/animation-principles",
+      "sourceType": "github",
+      "skillPath": "skills/08-by-industry/travel-hospitality/SKILL.md",
+      "computedHash": "90b8426aaf9404cdfe4490318778ee18be3e1fb65dfc5e3b6037fbe67cea9508"
+    }
+  }
+}

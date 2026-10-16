@@ -1,0 +1,114 @@
+@page "/about"
+@rendermode InteractiveServer
+
+<PageTitle>About | BiyaheKo Travel &amp; Tours</PageTitle>
+
+<section class="bg-[#16130d] text-[#faf7f1]">
+    <div class="mx-auto max-w-6xl px-4 pb-14 pt-12">
+        <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">About BiyaheKo</p>
+        <h1 class="font-display mt-2 max-w-3xl text-4xl leading-tight md:text-5xl">
+            A small agency with unreasonable standards.
+        </h1>
+        <p class="mt-4 max-w-2xl text-[#faf7f1]/75">
+            BiyaheKo started in 2019 with one van in El Nido and a rule: never sell a tour
+            we wouldn't take our own families on. Seven years later we run four signature
+            journeys across Palawan, Boracay, Cebu, and Bohol, every one led by licensed
+            local guides, every price quoted per person with nothing hiding behind it.
+        </p>
+    </div>
+</section>
+
+<section class="mx-auto max-w-6xl gap-10 px-4 py-12 lg:grid lg:grid-cols-2">
+    <div>
+        <h2 class="font-display text-2xl">How to reach us</h2>
+        <ul class="mt-4 space-y-3 text-sm">
+            <li class="flex gap-3"><span class="text-[#c9a227]">✦</span><span><strong>Email</strong> — hello@biyaheko.ph (replies within a day)</span></li>
+            <li class="flex gap-3"><span class="text-[#c9a227]">✦</span><span><strong>Phone</strong> — +63 (2) 8555 0134, Mon–Sat 9am–6pm</span></li>
+            <li class="flex gap-3"><span class="text-[#c9a227]">✦</span><span><strong>Office</strong> — Makati City, Metro Manila (visits by appointment)</span></li>
+        </ul>
+        <h2 class="font-display mt-10 text-2xl">The fine print, up front</h2>
+        <ul class="mt-4 space-y-3 text-sm text-[#8a8272]">
+            <li>✓ Full refund up to 7 days before travel, 50% up to 72 hours.</li>
+            <li>✓ Trips proceed rain or shine; unsafe weather means free rebooking.</li>
+            <li>✓ Groups capped at 12 travelers, always.</li>
+        </ul>
+    </div>
+
+    <div class="mt-10 lg:mt-0">
+        <div class="rounded-xl border border-[#16130d]/10 bg-white p-6 shadow-sm">
+            @if (sent)
+            {
+                <div class="bk-pop py-8 text-center">
+                    <p class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#c9a227]/15 text-2xl text-[#c9a227]">✓</p>
+                    <p class="font-display mt-4 text-2xl">Message received!</p>
+                    <p class="mt-2 text-sm text-[#8a8272]">Thanks, @sentName. We reply within one working day.</p>
+                    <button @onclick="Reset"
+                            class="mt-5 text-xs uppercase tracking-[0.25em] text-[#8a8272] hover:text-[#c9a227]">
+                        Send another
+                    </button>
+                </div>
+            }
+            else
+            {
+                <h2 class="font-display text-2xl">Ask us anything</h2>
+                <EditForm Model="inquiry" OnValidSubmit="Send" class="mt-4 space-y-3">
+                    <DataAnnotationsValidator />
+                    <div>
+                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#8a8272]" for="inq-name">Name</label>
+                        <InputText id="inq-name" @bind-Value="inquiry.Name" placeholder="Your name"
+                                   class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
+                        <ValidationMessage For="() => inquiry.Name" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#8a8272]" for="inq-email">Email</label>
+                        <InputText id="inq-email" @bind-Value="inquiry.Email" placeholder="you@example.com"
+                                   class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
+                        <ValidationMessage For="() => inquiry.Email" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />
+                    </div>
+                    <div>
+                        <label class="mb-1 block text-xs uppercase tracking-[0.2em] text-[#8a8272]" for="inq-msg">Message</label>
+                        <InputTextArea id="inq-msg" @bind-Value="inquiry.Message" rows="4" placeholder="Honeymoon in October, 2 travelers, mid-range budget…"
+                                       class="w-full rounded-lg border border-[#16130d]/15 px-3 py-2 text-sm outline-none focus:border-[#c9a227]" />
+                        <ValidationMessage For="() => inquiry.Message" class="bk-field-msg mt-1 block text-xs text-[#b34434]" />
+                    </div>
+                    <button type="submit"
+                            class="w-full bg-[#16130d] px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#faf7f1] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                        Send inquiry
+                    </button>
+                </EditForm>
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+    private Inquiry inquiry = new();
+    private bool sent;
+    private string sentName = "";
+
+    private void Send()
+    {
+        sentName = inquiry.Name;
+        sent = true;
+    }
+
+    private void Reset()
+    {
+        inquiry = new();
+        sent = false;
+    }
+
+    private sealed class Inquiry
+    {
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Tell us your name.")]
+        public string Name { get; set; } = "";
+
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "We reply by email.")]
+        [System.ComponentModel.DataAnnotations.EmailAddress(ErrorMessage = "That email doesn't look right.")]
+        public string Email { get; set; } = "";
+
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Don't forget the actual question.")]
+        [System.ComponentModel.DataAnnotations.MinLength(10, ErrorMessage = "Give us a little more detail (10+ characters).")]
+        public string Message { get; set; } = "";
+    }
+}
