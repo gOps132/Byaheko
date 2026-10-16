@@ -1,0 +1,144 @@
+@page "/packages/{slug}"
+@using Midterm.Models
+@using Midterm.Services
+
+<PageTitle>@(package?.Title ?? "Not found") | BiyaheKo Travel &amp; Tours</PageTitle>
+
+@if (package is null)
+{
+    <section class="mx-auto max-w-3xl px-4 py-20">
+        <EmptyState Title="That journey sailed without us"
+                    Message="We couldn't find this package. It may have been renamed — browse the current lineup instead.">
+            <a href="packages"
+               class="inline-block bg-[#16130d] px-6 py-3 text-sm uppercase tracking-[0.2em] text-[#faf7f1] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                Back to packages
+            </a>
+        </EmptyState>
+    </section>
+}
+else
+{
+    <section class="bg-[#16130d] text-[#faf7f1]">
+        <div class="mx-auto max-w-6xl px-4 pb-10 pt-10">
+            <a href="packages" class="text-xs uppercase tracking-[0.25em] text-[#c9a227] hover:text-[#e3c766]">← All packages</a>
+            <p class="mt-4 text-xs uppercase tracking-[0.3em] text-[#c9a227]">@package.Destination · @package.Category</p>
+            <h1 class="font-display mt-2 text-4xl md:text-5xl">@package.Title</h1>
+            <p class="mt-2 text-lg italic text-[#faf7f1]/70">@package.DreamLine</p>
+            <div class="mt-4 flex flex-wrap items-center gap-4 text-sm">
+                <RatingStars Rating="package.Rating" />
+                <span class="text-[#faf7f1]/70">@package.DurationLabel · from <span class="font-semibold text-[#faf7f1]">₱@package.PricePerPerson.ToString("N0")</span> / person</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl gap-10 px-4 py-10 lg:grid lg:grid-cols-[1fr_340px] lg:items-start">
+        <div>
+            @* ---------- gallery ---------- *@
+            <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-gradient-to-br from-[#16130d] via-[#3a2f18] to-[#c9a227]">
+                @for (var i = 0; i < package.GalleryUrls.Count; i++)
+                {
+                    var index = i;
+                    <img src="@package.GalleryUrls[index]" alt="@package.Title, photo @(index + 1)"
+                         loading="@(index == 0 ? "eager" : "lazy")"
+                         class="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 @(index == activePhoto ? "opacity-100" : "opacity-0")" />
+                }
+                <button @onclick="PrevPhoto" aria-label="Previous photo"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-[#16130d]/70 px-3 py-1.5 text-lg text-[#faf7f1] transition-transform hover:scale-110">‹</button>
+                <button @onclick="NextPhoto" aria-label="Next photo"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-[#16130d]/70 px-3 py-1.5 text-lg text-[#faf7f1] transition-transform hover:scale-110">›</button>
+                <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
+                    @for (var i = 0; i < package.GalleryUrls.Count; i++)
+                    {
+                        var index = i;
+                        <button @onclick="() => activePhoto = index" aria-label="Photo @(index + 1)"
+                                class="h-2.5 w-2.5 rounded-full transition-colors @(index == activePhoto ? "bg-[#c9a227]" : "bg-[#faf7f1]/50 hover:bg-[#faf7f1]")"></button>
+                    }
+                </div>
+            </div>
+
+            @* ---------- story ---------- *@
+            <p class="mt-6 text-lg leading-relaxed">@package.Summary</p>
+
+            <h2 class="font-display mt-10 text-2xl">Highlights</h2>
+            <ul class="mt-3 space-y-2">
+                @foreach (var highlight in package.Highlights)
+                {
+                    <li class="flex gap-3"><span class="text-[#c9a227]">✦</span><span>@highlight</span></li>
+                }
+            </ul>
+
+            <h2 class="font-display mt-10 text-2xl">Day by day</h2>
+            <ol class="mt-4 space-y-0 border-l-2 border-[#c9a227]/40">
+                @foreach (var day in package.Itinerary)
+                {
+                    <li class="relative py-3 pl-6">
+                        <span class="absolute -left-[7px] top-4 h-3 w-3 rounded-full bg-[#c9a227]"></span>
+                        <p>@day</p>
+                    </li>
+                }
+            </ol>
+
+            <div class="mt-10 grid gap-6 md:grid-cols-2">
+                <div class="rounded-xl border border-[#16130d]/10 bg-white p-5">
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-[#c9a227]">Included</h3>
+                    <ul class="mt-3 space-y-1.5 text-sm">
+                        @foreach (var item in package.Inclusions)
+                        {
+                            <li>✓ @item</li>
+                        }
+                    </ul>
+                </div>
+                <div class="rounded-xl border border-[#16130d]/10 bg-white p-5">
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a8272]">Not included</h3>
+                    <ul class="mt-3 space-y-1.5 text-sm text-[#8a8272]">
+                        @foreach (var item in package.Exclusions)
+                        {
+                            <li>– @item</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        @* ---------- sticky booking rail (ticket 05 mounts the form here) ---------- *@
+        <aside class="mt-10 lg:sticky lg:top-24 lg:mt-0">
+            <div class="rounded-xl bg-[#16130d] p-6 text-[#faf7f1]">
+                <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">@package.DurationLabel</p>
+                <p class="mt-1"><span class="font-display text-3xl">₱@package.PricePerPerson.ToString("N0")</span> <span class="text-sm text-[#faf7f1]/60">/ person</span></p>
+                <div class="mt-4 rounded-lg border border-dashed border-[#c9a227]/50 p-4 text-center text-sm text-[#faf7f1]/70">
+                    Online booking opens in the next slice. For now, call us at +63 (2) 8555 0134.
+                </div>
+                <a href="my-trips"
+                   class="mt-4 block text-center text-xs uppercase tracking-[0.25em] text-[#c9a227] hover:text-[#e3c766]">
+                    View my trips →
+                </a>
+            </div>
+        </aside>
+    </section>
+}
+
+@code {
+    [Parameter]
+    public string Slug { get; set; } = "";
+
+    private TourPackage? package;
+    private int activePhoto;
+
+    protected override void OnParametersSet()
+    {
+        package = TourData.GetBySlug(Slug);
+        activePhoto = 0;
+    }
+
+    private void PrevPhoto()
+    {
+        if (package is null) return;
+        activePhoto = (activePhoto - 1 + package.GalleryUrls.Count) % package.GalleryUrls.Count;
+    }
+
+    private void NextPhoto()
+    {
+        if (package is null) return;
+        activePhoto = (activePhoto + 1) % package.GalleryUrls.Count;
+    }
+}
