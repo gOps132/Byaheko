@@ -1,0 +1,9 @@
+<span class="inline-flex items-center gap-1 text-sm" aria-label="@Rating out of 5 stars">
+    <span class="text-[#c9a227]">★</span>
+    <span class="font-medium">@Rating.ToString("0.0")</span>
+</span>
+
+@code {
+    [Parameter]
+    public double Rating { get; set; }
+}

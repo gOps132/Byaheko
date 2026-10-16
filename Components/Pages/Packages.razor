@@ -1,0 +1,82 @@
+@page "/packages"
+@using Midterm.Models
+@using Midterm.Services
+
+<PageTitle>Packages | BiyaheKo Travel &amp; Tours</PageTitle>
+
+<section class="mx-auto max-w-6xl px-4 py-10">
+    <p class="text-xs uppercase tracking-[0.3em] text-[#c9a227]">Tour packages</p>
+    <h1 class="font-display mt-2 text-4xl md:text-5xl">Choose your escape</h1>
+    <p class="mt-2 max-w-xl text-[#8a8272]">Four local journeys, hand-built. Search by island, sort by what matters.</p>
+
+    <div class="mt-6 flex flex-col gap-3 md:flex-row">
+        <input @bind="searchText" @bind:event="oninput" placeholder="Search El Nido, beach, culture…"
+               class="flex-1 rounded-lg border border-[#16130d]/15 bg-white px-4 py-2.5 text-sm outline-none transition-colors placeholder:text-[#8a8272]/70 focus:border-[#c9a227]" />
+        <select @bind="sortBy"
+                class="rounded-lg border border-[#16130d]/15 bg-white px-4 py-2.5 text-sm outline-none focus:border-[#c9a227]">
+            <option value="recommended">Sort: Recommended</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="duration">Longest first</option>
+            <option value="rating">Top rated</option>
+        </select>
+    </div>
+
+    @if (!Filtered.Any())
+    {
+        <div class="mt-8">
+            <EmptyState Title="No journeys found"
+                        Message="Try a different island or clear your search.">
+                <button @onclick="ClearSearch"
+                        class="bg-[#16130d] px-5 py-2 text-sm uppercase tracking-[0.2em] text-[#faf7f1] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                    Clear search
+                </button>
+            </EmptyState>
+        </div>
+    }
+    else
+    {
+        <div @key="ResultKey" class="bk-stagger mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            @foreach (var package in Filtered)
+            {
+                <PackageCard Package="package" />
+            }
+        </div>
+    }
+</section>
+
+@code {
+    private readonly List<TourPackage> all = TourData.GetPackages();
+    private string searchText = "";
+    private string sortBy = "recommended";
+
+    private IEnumerable<TourPackage> Filtered
+    {
+        get
+        {
+            var query = all.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                var term = searchText.Trim();
+                query = query.Where(p =>
+                    p.Title.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                    p.Destination.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                    p.Category.Contains(term, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return sortBy switch
+            {
+                "price-asc" => query.OrderBy(p => p.PricePerPerson),
+                "price-desc" => query.OrderByDescending(p => p.PricePerPerson),
+                "duration" => query.OrderByDescending(p => p.DurationDays),
+                "rating" => query.OrderByDescending(p => p.Rating),
+                _ => query.OrderByDescending(p => p.Rating),
+            };
+        }
+    }
+
+    private string ResultKey => $"{searchText.Trim().ToLowerInvariant()}|{sortBy}";
+
+    private void ClearSearch() => searchText = "";
+}
