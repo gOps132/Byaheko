@@ -9,6 +9,11 @@
   <p align="center">
     Discover the Philippines in style. A Blazor travel agency model: browse local tour packages, read the story-first detail pages, and reserve trips with validated booking inquiries.
   </p>
+
+  <p align="center">
+    <strong>Epilan, Gian Cedrick G.</strong><br />
+    BSCS 3 - F1
+  </p>
 </div>
 
 ## Built With
