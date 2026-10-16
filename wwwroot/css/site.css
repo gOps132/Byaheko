@@ -1,0 +1,150 @@
+/* Biyaheko Travel & Tours — design tokens + motion layer (ticket 01) */
+
+:root {
+  --ink: #16130d;
+  --ink-soft: #221d14;
+  --ivory: #faf7f1;
+  --gold: #c9a227;
+  --gold-soft: #e3c766;
+  --muted: #8a8272;
+  --danger: #b34434;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: "Jost", system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: "Marcellus", Georgia, serif;
+}
+
+/* ---------- motion: entrances ---------- */
+@keyframes bk-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bk-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bk-slide-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bk-stagger > * {
+  opacity: 0;
+  animation: bk-fade-up 0.5s ease-out forwards;
+}
+
+.bk-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.bk-stagger > *:nth-child(2) { animation-delay: 0.11s; }
+.bk-stagger > *:nth-child(3) { animation-delay: 0.17s; }
+.bk-stagger > *:nth-child(4) { animation-delay: 0.23s; }
+.bk-stagger > *:nth-child(5) { animation-delay: 0.29s; }
+.bk-stagger > *:nth-child(6) { animation-delay: 0.35s; }
+
+/* ---------- motion: scroll reveal (ticket 03 driver) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- motion: hero ---------- */
+@keyframes bk-kenburns {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.12); }
+}
+
+.bk-kenburns {
+  animation: bk-kenburns 8s ease-out forwards;
+}
+
+.bk-hero-line {
+  opacity: 0;
+  animation: bk-fade-up 0.5s ease-out forwards;
+}
+
+.bk-hero-line:nth-child(1) { animation-delay: 0.15s; }
+.bk-hero-line:nth-child(2) { animation-delay: 0.3s; }
+.bk-hero-line:nth-child(3) { animation-delay: 0.45s; }
+
+/* ---------- motion: confirmation fanfare ---------- */
+@keyframes bk-pop {
+  0% { opacity: 0; transform: scale(0.6); }
+  60% { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bk-draw-check {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes bk-sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(20deg); }
+}
+
+.bk-pop { animation: bk-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.bk-check-path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: bk-draw-check 0.45s ease-out 0.25s forwards;
+}
+.bk-sparkle { animation: bk-sparkle 0.9s ease-in-out infinite; }
+
+/* ---------- motion: live total pulse ---------- */
+@keyframes bk-pulse-soft {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+.bk-pulse { animation: bk-pulse-soft 0.3s ease-out; }
+
+/* ---------- motion: suspense loader ---------- */
+@keyframes bk-drift {
+  0%, 100% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+}
+
+.bk-drift { animation: bk-drift 1.2s ease-in-out infinite; }
+
+/* ---------- validation ---------- */
+.bk-field-msg {
+  animation: bk-slide-in 0.3s ease-out;
+}
+
+.bk-input-invalid {
+  border-color: var(--danger);
+  transition: border-color 0.3s ease-out;
+}
+
+/* ---------- reduced motion kill-switch ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal, .bk-stagger > *, .bk-hero-line {
+    opacity: 1;
+    transform: none;
+  }
+}

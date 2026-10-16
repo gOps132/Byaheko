@@ -6,7 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     <ResourcePreloader />
-    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: '#16130d',
+                        ivory: '#faf7f1',
+                        gold: '#c9a227',
+                    },
+                    fontFamily: {
+                        display: ['Marcellus', 'Georgia', 'serif'],
+                        body: ['Jost', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Marcellus&display=swap" />
+    <link rel="stylesheet" href="@Assets["css/site.css"]" />
     <link rel="stylesheet" href="@Assets["app.css"]" />
     <link rel="stylesheet" href="@Assets["Midterm.styles.css"]" />
     <ImportMap />

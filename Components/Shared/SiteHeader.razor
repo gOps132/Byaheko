@@ -1,0 +1,58 @@
+<header class="sticky top-0 z-50 border-b border-[#c9a227]/25 bg-[#16130d]/95 text-[#faf7f1] backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <a href="/" class="leading-tight">
+            <span class="font-display block text-2xl tracking-wide">Biyahe<span class="text-[#c9a227]">Ko</span></span>
+            <span class="block text-[11px] uppercase tracking-[0.3em] text-[#8a8272]">Travel &amp; Tours</span>
+        </a>
+
+        <button @onclick="ToggleMenu" aria-label="Toggle navigation"
+                class="rounded border border-[#c9a227]/40 px-3 py-1 text-xl leading-none md:hidden">
+            @(menuOpen ? "×" : "☰")
+        </button>
+
+        <nav class="hidden items-center gap-8 text-sm uppercase tracking-[0.2em] md:flex">
+            <NavLink href="" Match="NavLinkMatch.All" ActiveClass="!text-[#c9a227] !border-[#c9a227]"
+                     class="border-b-2 border-transparent pb-1 text-[#faf7f1]/80 transition-colors hover:text-[#c9a227]">
+                Home
+            </NavLink>
+            <NavLink href="packages" ActiveClass="!text-[#c9a227] !border-[#c9a227]"
+                     class="border-b-2 border-transparent pb-1 text-[#faf7f1]/80 transition-colors hover:text-[#c9a227]">
+                Packages
+            </NavLink>
+            <NavLink href="my-trips" ActiveClass="!text-[#c9a227] !border-[#c9a227]"
+                     class="border-b-2 border-transparent pb-1 text-[#faf7f1]/80 transition-colors hover:text-[#c9a227]">
+                My Trips
+            </NavLink>
+            <NavLink href="about" ActiveClass="!text-[#c9a227] !border-[#c9a227]"
+                     class="border-b-2 border-transparent pb-1 text-[#faf7f1]/80 transition-colors hover:text-[#c9a227]">
+                About
+            </NavLink>
+            <a href="packages"
+               class="bg-[#c9a227] px-5 py-2 text-[#16130d] transition-transform duration-150 hover:-translate-y-0.5 active:scale-95">
+                Book Now
+            </a>
+        </nav>
+    </div>
+
+    @if (menuOpen)
+    {
+        <nav class="flex flex-col gap-1 border-t border-[#c9a227]/25 px-4 py-3 text-sm uppercase tracking-[0.2em] md:hidden">
+            <NavLink href="" Match="NavLinkMatch.All" ActiveClass="!text-[#c9a227]"
+                     class="py-2 text-[#faf7f1]/80" @onclick="CloseMenu">Home</NavLink>
+            <NavLink href="packages" ActiveClass="!text-[#c9a227]"
+                     class="py-2 text-[#faf7f1]/80" @onclick="CloseMenu">Packages</NavLink>
+            <NavLink href="my-trips" ActiveClass="!text-[#c9a227]"
+                     class="py-2 text-[#faf7f1]/80" @onclick="CloseMenu">My Trips</NavLink>
+            <NavLink href="about" ActiveClass="!text-[#c9a227]"
+                     class="py-2 text-[#faf7f1]/80" @onclick="CloseMenu">About</NavLink>
+        </nav>
+    }
+</header>
+
+@code {
+    private bool menuOpen;
+
+    private void ToggleMenu() => menuOpen = !menuOpen;
+
+    private void CloseMenu() => menuOpen = false;
+}
