@@ -14,7 +14,7 @@
             var index = i;
             <img src="@slides[index].Url" alt="@slides[index].Alt"
                  loading="@(index == 0 ? "eager" : "lazy")"
-                 class="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 @(index == slide ? "opacity-100" : "opacity-0")" />
+                 class="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 @(index == slide ? "opacity-100 bk-kenburns" : "opacity-0")" />
         }
     </div>
     <div class="absolute inset-0 bg-gradient-to-r from-[#16130d]/90 via-[#16130d]/55 to-transparent"></div>
