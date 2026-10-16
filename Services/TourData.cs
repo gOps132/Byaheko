@@ -17,11 +17,11 @@ public static class TourData
             DurationDays = 4,
             PricePerPerson = 18500m,
             Rating = 4.9,
-            ImageUrl = string.Format(U, "photo-1559494007-9f5847c49d94"),
+            ImageUrl = string.Format(U, "photo-1518509562904-e7ef99cdcc86"),
             GalleryUrls = new()
             {
-                string.Format(U, "photo-1559494007-9f5847c49d94"),
                 string.Format(U, "photo-1518509562904-e7ef99cdcc86"),
+                string.Format(U, "photo-1583212292454-1fe6229603b7"),
                 string.Format(U, "photo-1544551763-46a013bb70d5"),
             },
             Summary = "Karst lagoons, hidden beaches, and water so clear the boats look airborne.",
