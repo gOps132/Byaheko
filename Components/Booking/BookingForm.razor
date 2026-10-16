@@ -3,7 +3,7 @@
 @using Midterm.Services
 @inject BookingState Trips
 
-<div class="rounded-xl bg-ink p-6 text-ivory">
+<div class="rounded-xl bg-ink p-6 text-ivory [color-scheme:dark]">
     @if (phase == Phase.Success && confirmed is not null)
     {
         <div class="bk-pop text-center" role="status">

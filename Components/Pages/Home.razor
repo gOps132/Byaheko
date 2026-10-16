@@ -4,7 +4,7 @@
 @using Midterm.Services
 @implements IDisposable
 
-<PageTitle>BiyaheKo Travel &amp; Tours — Discover the Philippines in Style</PageTitle>
+<PageTitle>BiyaheKo Travel &amp; Tours: Discover the Philippines in Style</PageTitle>
 
 @* ---------- 1. HERO ---------- *@
 <section class="relative flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden bg-ink text-ivory">
@@ -57,7 +57,7 @@
 
 @* ---------- 2. MARQUEE STRIP ---------- *@
 <div class="overflow-hidden border-y border-[#c9a227]/30 bg-gold py-3" aria-hidden="true">
-    <div class="bk-marquee-track gap-0 text-sm font-semibold uppercase tracking-[0.3em] text-ink">
+    <div class="bk-marquee-track gap-0 text-sm font-semibold uppercase tracking-[0.3em] text-ink hover:[animation-play-state:paused]">
         @for (var i = 0; i < 2; i++)
         {
             <span class="flex shrink-0 items-center">
@@ -122,7 +122,7 @@
         “We watched the sun come up over the Big Lagoon with coffee our guide brewed
         on the boat. I have stopped bragging about other trips.”
     </p>
-    <p class="reveal mt-6 text-sm uppercase tracking-[0.25em] text-[#6b6455]">Mara D. — El Nido Island Escape, March 2026</p>
+    <p class="reveal mt-6 text-sm uppercase tracking-[0.25em] text-[#6b6455]">Mara D., El Nido Island Escape, March 2026</p>
     <div class="reveal mt-8">
         <RatingStars Rating="5.0" />
     </div>
