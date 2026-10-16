@@ -51,7 +51,7 @@
                         </span>
                     </div>
                     <div class="flex items-center justify-between border-t border-[#16130d]/10 px-5 py-3">
-                        <span class="font-display text-lg">₱@((package?.PricePerPerson ?? 0) * booking.Guests).ToString("N0")</span>
+                        <span class="font-display text-lg">₱@(((package?.PricePerPerson ?? 0) * booking.Guests).ToString("N0"))</span>
                         <button @onclick="() => Trips.Cancel(booking.Id)"
                                 class="text-xs uppercase tracking-[0.2em] text-[#b34434] hover:underline">
                             Cancel
